@@ -1,0 +1,16 @@
+{% extends "base.html" %} 
+{% block content %} 
+{% include "navbar.html" %} 
+<div class="row container-fluid">
+{% for cart in carts %}
+<div class="col-xlg-3 col-lg-3 col-md-4 col-sm-12 col-12 mt-3">
+    <img class="w-100" src="{{cart.product.product_image.url}}" alt="">
+    <div class="pt-2 px-2 border d-flex justify-content-between align-items-center py-3">
+        <p>{{cart.product.product_name}}</p>
+        <p>{{cart.product.product_selling_price}}</p>
+        <a href="{% url 'delete' cart.id %}"><button class="btn btn-dark">Remove</button></a>
+    </div>
+</div>
+{% endfor %} 
+</div>
+{% endblock content %}
