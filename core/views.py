@@ -72,8 +72,8 @@ def addtocart(request, pk):
     if Cart.objects.filter(product=product):
         messages.success(request, 'alreay added')
     else:
-        cart.save()
         messages.success(request, 'item added to cart')
+        cart.save()
 
     allcart = Cart.objects.all()
     context={
