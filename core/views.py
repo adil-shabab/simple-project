@@ -12,6 +12,8 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     count = Cart.objects.all().count()
     products = Product.objects.all()
+    cart = Cart.objects.all()
+    
     context={'products':products, 'count': count}
     return render(request, 'index.html', context)
 
