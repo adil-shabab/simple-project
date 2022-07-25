@@ -35,3 +35,30 @@ h4{
 label{
     color: rgb(31, 93, 31);
 }
+.list{
+    list-style: none;
+    color: black;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 35px;
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid white;
+    background: white;
+    transition: 0.5s ease;
+}
+.list:hover{
+    background: #000;
+    color: white;
+}
+.count{
+    position: absolute;
+    top:-7px;
+    background: red;
+    color: white;
+    padding: 0.5px 8px;
+    border-radius: 50%;
+    right: -14px;
+}

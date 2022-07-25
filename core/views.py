@@ -10,8 +10,9 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required(login_url='login')
 def home(request):
+    count = Cart.objects.all().count()
     products = Product.objects.all()
-    context={'products':products}
+    context={'products':products, 'count': count}
     return render(request, 'index.html', context)
 
 def signup(request):
@@ -47,6 +48,22 @@ def login(request):
     
     return render(request, 'login.html')
 
+
+
+@login_required(login_url='login')
+def cart(request):
+    count = Cart.objects.all().count()
+    allcart = Cart.objects.all()
+    context={
+        'carts': allcart,
+        'count': count
+    }
+    return render(request, 'cart.html', context)
+
+
+
+
+
 @login_required(login_url='login')
 def addtocart(request, pk):
 
@@ -56,16 +73,20 @@ def addtocart(request, pk):
         messages.success(request, 'alreay added')
     else:
         cart.save()
+        messages.success(request, 'item added to cart')
 
     allcart = Cart.objects.all()
     context={
         'carts': allcart
     }
-    return render(request, 'cart.html', context)
+    return redirect('home')
 
 
 @login_required(login_url='login')
 def delete(request, pk):
     cart = Cart.objects.get(id=pk)
     cart.delete()
-    return redirect('home')
+    return redirect('cart')
+
+
+
