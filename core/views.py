@@ -54,7 +54,7 @@ def login(request):
 @login_required(login_url='login')
 def cart(request):
     count = Cart.objects.all().count()
-    allcart = Cart.objects.filter(user = request.user)
+    allcart = Cart.objects.all()
     context={
         'carts': allcart,
         'count': count
